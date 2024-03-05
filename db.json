@@ -1,0 +1,40 @@
+{
+  "Elves": [
+    {
+      "id": "1",
+      "Name": "Imin",
+      "Group": "Vanyar",
+      "Description": "Eldar"
+    },
+    {
+      "id": "2",
+      "Name": "Iminye",
+      "Group": "Vanyar",
+      "Description": "Eldar"
+    },
+    {
+      "id": "3",
+      "Name": "Ingwe",
+      "Group": "Vanyar",
+      "Description": "High King of the Elves"
+    },
+    {
+      "id": "4",
+      "Name": "Ingwion",
+      "Group": "Vanyar",
+      "Description": "Prince of the Vanyar"
+    },
+    {
+      "id": "5",
+      "Name": "Indis",
+      "Group": "Vanyar",
+      "Description": "Princess of the Vanyar"
+    },
+    {
+      "id": "fd44",
+      "Name": "Manwe",
+      "Group": "Valar",
+      "Description": "King of Valar"
+    }
+  ]
+}
