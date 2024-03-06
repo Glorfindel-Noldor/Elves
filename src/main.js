@@ -5,22 +5,27 @@ const api = "http://localhost:8000/Elves"
 
 function Main(){
     const [search, setSearch] = useState('');
-    const [elves, setElves] = useState([]);
-    //states of each input 
+
+    const [Name, setName]=useState('');
+    const [Description, setDescription]=useState('');
+    const [Group, setGroup]= useState('');
+    const [id, setId]=useState()
+
+    
+
 
 
     useEffect(()=>{
         fetch(api)
         .then((res)=>(res.json()))
-        .then((data)=>(setElves(data)))
+        .then((data)=>{
+            setName(data.Name);
+            setDescription(data.Description);
+            setGroup(data.Group);
+            setId(data.id);
+        })
         .catch((error)=>(console.log(error)))
     },[])
-
-    const deleteElf = (id)=>{
-        const removed = elves.filter((elf)=>( elf.id !== id ))
-        setElves(removed)
-    }
-
 
     return(
         <>
@@ -28,12 +33,16 @@ function Main(){
             <h1>Main</h1>
             <hr/>
             <Outlet context={{
+                id,
                 api, 
-                elves,
                 search,
-                setElves, 
                 setSearch,
-                deleteElf
+                Name,
+                Group,
+                Description,
+                setName,
+                setGroup,
+                setDescription
             }}/>
 
         </>

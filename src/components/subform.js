@@ -1,29 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import { useOutletContext } from "react-router-dom";
 
 function SubForm() {
-  const { api, elves, setElves } = useOutletContext();
-  
-
-
-  const handleChange = (e)=>{
-    e.preventDefault();
-    setElves({
-      ...elves,
-      [e.target.name] : e.target.value
-    })
-
-  }
-
+  const {
+    api, 
+    Name,
+    Group,
+    Description,
+    setName,
+    setGroup,
+    setDescription
+  } = useOutletContext();
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if(!Name || !Group || !Description){
+      return alert('no empty spaces !')
+    }
+
     const elvenNameJSON = {
-      Name: elves.Name,
-      Group: elves.Group,
-      Description: elves.Description,
+      "Name": Name,
+      "Group": Group,
+      "Description": Description,
     };
 
     const post = {
@@ -36,35 +36,38 @@ function SubForm() {
 
     fetch(api, post)
       .then((res) => res.json())
-      .then((newElf) => setElves([...elves, newElf]))
+      .then((newElf) =>{
+        setName(newElf.Name);
+        setGroup(newElf.Group);
+        setDescription(newElf.Description);
+        setName('');
+        setGroup('');
+        setDescription('');
+      })
       .catch((error) =>  console.log(error.toString()))
+     
 
-    // setElves({
-    //   Name: "",
-    //   Group: "",
-    //   Description: "",
-    // })
   };
 
   return (
     <form onSubmit={handleSubmit} >
       <input
-        value={elves.Name}
-        onChange={handleChange}
+        value={Name ?? ''}
+        onChange={(e)=>setName(e.target.value)}
         name="Name"
         type="text"
         placeholder="name"
       />
       <input
-        value={elves.Group} // from here 
-        onChange={handleChange}// value state that are 
+        value={Group ?? ''}
+        onChange={(e)=>setGroup(e.target.value)}
         name="Group"
         type="text"
         placeholder="group"
       />
       <input
-        value={elves.Description}
-        onChange={handleChange}
+        value={Description ?? ''}
+        onChange={(e)=>setDescription(e.target.value)}
         name="Description"
         type="text"
         placeholder="Description"
