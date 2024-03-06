@@ -1,8 +1,2 @@
-bash
-
-```
-npm install @babel/plugin-proposal-private-property-in-object
-
-```
-
-35MILB!@
+this is a simple app that stores names of J.R.R. Tolkien's elves.
+you can update the list so you can add more with a small discription of them
